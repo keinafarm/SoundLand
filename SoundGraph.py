@@ -34,11 +34,13 @@ class SoundGraph:
 
 
 if __name__ == "__main__":
-    from SrcMic import SrcMic
+    from SrcSin import SrcSin
 
 
     plotwin = SoundGraph()
-    sound_source = SrcMic()
+    sound_source = SrcSin()
+    sound_source.set_frequency(440)
+    sound_source.set_volume(0.5)
     plotwin.set_sound(sound_source)
 
     def update():
