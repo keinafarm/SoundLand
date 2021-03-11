@@ -18,7 +18,8 @@ class SrcSin(SoundSrc):
 
     def update(self):
         angle = np.arange( self.start, self.start + self.angle*self.CHUNK, self.angle )
-        self.data = np.sin( angle ) * self.volume
+        data = np.sin( angle ) * 32768 * self.volume
+        self.data = np.array(data,dtype="int16")
 
         self.start += self.CHUNK
         if self.start > 2*np.pi:

@@ -22,15 +22,11 @@ class SrcMic(SoundSrc):
                                       channels=1,
                                       rate=self.RATE,
                                       input=True,
-                                      output=True,
+                                      output=False,
                                       frames_per_buffer=self.CHUNK)
 
         self.data = np.zeros(self.CHUNK)
+        self.raw = np.zeros(self.CHUNK)
 
     def update(self):
-        self.data = self.AudioInput()
-
-    def AudioInput(self):
-        ret = self.stream.read(self.CHUNK)
-        ret = np.frombuffer(ret, dtype="int16") / 32768
-        return ret
+        self.data = self.stream.read(self.CHUNK)
