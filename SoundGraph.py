@@ -12,8 +12,7 @@ import pyqtgraph as pg
 from pyqtgraph.Qt import QtCore, QtGui
 
 
-
-class Soundraph:
+class SoundGraph:
     def __init__(self):
         self.win = pg.GraphicsWindow()
         self.win.setWindowTitle(u"波形のリアルタイムプロット")
@@ -24,14 +23,9 @@ class Soundraph:
         self.plt.setYRange(-1.0, 1.0)  # y軸の上限、下限の設定
         self.curve = self.plt.plot()  # プロットデータを入れる場所
 
-        self.timer = QtCore.QTimer()
         self.sound_source = None
 
     def set_sound(self, sound_source):
-        # アップデート時間設定
-        self.timer.timeout.connect(self.update)
-        self.timer.start(5)                 # 5msec
-
         self.sound_source = sound_source
 
     def update(self):
@@ -42,9 +36,20 @@ class Soundraph:
 if __name__ == "__main__":
     from SrcMic import SrcMic
 
-    plotwin = Soundraph()
+
+    plotwin = SoundGraph()
     sound_source = SrcMic()
     plotwin.set_sound(sound_source)
+
+    def update():
+        sound_source.update()
+        plotwin.update()
+
+    timer = QtCore.QTimer()
+    # アップデート時間設定
+    timer.timeout.connect(update)
+    timer.start(5)  # 5msec
+
 
     if (sys.flags.interactive != 1) or not hasattr(QtCore, 'PYQT_VERSION'):
         QtGui.QApplication.instance().exec_()

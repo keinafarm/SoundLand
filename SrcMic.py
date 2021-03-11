@@ -27,9 +27,8 @@ class SrcMic(SoundSrc):
 
         self.data = np.zeros(self.CHUNK)
 
-    def get_data(self):
-        data = self.AudioInput()
-        return data
+    def update(self):
+        self.data = self.AudioInput()
 
     def AudioInput(self):
         ret = self.stream.read(self.CHUNK)

@@ -12,4 +12,4 @@ class SoundSrc:
         self.data = np.zeros(self.CHUNK)
 
     def get_data(self):
-        pass
+        return self.data
