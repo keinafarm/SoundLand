@@ -53,17 +53,15 @@ if __name__ == "__main__":
     plotwin.set_sound(sound_source)
     sound_out.set_sound(sound_source)
 
-    def update():
-        sound_source.update()
+    def updatex():
         plotwin.update()
-        sound_out.update()
+#        sound_out.update()
 
 
     timer = QtCore.QTimer()
     # アップデート時間設定
-    timer.timeout.connect(update)
+    timer.timeout.connect(updatex)
     timer.start(5)  # 5msec
-
 
     if (sys.flags.interactive != 1) or not hasattr(QtCore, 'PYQT_VERSION'):
         QtGui.QApplication.instance().exec_()
