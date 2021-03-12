@@ -13,22 +13,30 @@ volume = FltVolume()
 mixer = FltMixer()
 
 sound_source = SrcMic()
-mixer.set_sound(sound_source)
+#mixer.set_sound(sound_source)
 
-sound_source1 = SrcSin()
-sound_source1.set_frequency(440)
+sound_source0 = SrcSin()
+sound_source0.set_frequency(440)
+sound_source1 = FltVolume()
+sound_source1.set_sound(sound_source0)
 sound_source1.set_volume(0.3)
 mixer.set_sound(sound_source1)
 
 sound_source2 = SrcSin()
 sound_source2.set_frequency(660)
-sound_source2.set_volume(0.3)
-mixer.set_sound(sound_source2)
+sound_source4 = FltVolume()
+sound_source4.set_sound(sound_source2)
+sound_source4.set_volume(0.3)
+
+mixer.set_sound(sound_source4)
 
 sound_source3 = SrcSin()
 sound_source3.set_frequency(880)
-sound_source3.set_volume(0.3)
-mixer.set_sound(sound_source3)
+sound_source5 = FltVolume()
+sound_source5.set_sound(sound_source3)
+sound_source5.set_volume(0.3)
+
+mixer.set_sound(sound_source5)
 
 volume.set_sound(mixer)
 volume.set_volume(0.8)

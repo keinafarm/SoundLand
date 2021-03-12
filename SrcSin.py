@@ -20,7 +20,7 @@ class SrcSin(SoundSrc):
         self.frequency = 0.0
         self.angle = 0.0
         self.start = 0.0
-        self.volume = 0
+        self.volume = 1.0
 
     def set_frequency(self, frequency):
         """
