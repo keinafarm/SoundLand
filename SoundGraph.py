@@ -1,10 +1,13 @@
-#!/usr/local/bin/python3
-# -*- coding:utf-8 -*-
-
 # https://tam5917.hatenablog.com/entry/2019/04/28/130641
 # https://watlab-blog.com/2019/05/21/pyaudio-install/
 #  PyAudio‑0.2.11‑cp39‑cp39‑win_amd64.whl
 
+############################################################
+#
+#   波形を表示する
+#
+############################################################
+#
 
 import sys
 import numpy as np
@@ -19,15 +22,15 @@ class SoundGraph:
         self.win.setWindowTitle(u"波形のリアルタイムプロット")
         self.win.resize(1100, 800)
         self.plt = self.win.addPlot()  # プロットのビジュアル関係
-        self.ymin = -100
-        self.ymax = 80
+        self.y_min = -100
+        self.y_max = 80
         self.plt.setYRange(-1.0, 1.0)  # y軸の上限、下限の設定
         self.curve = self.plt.plot()  # プロットデータを入れる場所
 
         self.sound_source = None
 
-    def set_sound(self, sound_source):
-        self.sound_source = sound_source
+    def set_sound(self, source):
+        self.sound_source = source
 
     def update(self):
         data = self.sound_source.get_data()
@@ -41,29 +44,29 @@ if __name__ == "__main__":
     from SrcMic import SrcMic
     from SoundOut import SoundOut
 
-
-    plotwin = SoundGraph()
+    plot_window = SoundGraph()
     sound_out = SoundOut()
     sound_source = SrcMic()
 
-#    sound_source = SrcSin()
-#    sound_source.set_frequency(440)
-#    sound_source.set_volume(0.5)
+    #    sound_source = SrcSin()
+    #    sound_source.set_frequency(440)
+    #    sound_source.set_volume(0.5)
 
-    plotwin.set_sound(sound_source)
+    plot_window.set_sound(sound_source)
     sound_out.set_sound(sound_source)
 
-    def update():
-#        sound_source.update()
-        plotwin.update()
-#       sound_out.update()
 
+    def update():
+        #        sound_source.update()
+        plot_window.update()
+
+
+    #       sound_out.update()
 
     timer = QtCore.QTimer()
     # アップデート時間設定
     timer.timeout.connect(update)
-    timer.start(63)  # 5msec
-
+    timer.start(63)  # 5mSec
 
     if (sys.flags.interactive != 1) or not hasattr(QtCore, 'PYQT_VERSION'):
         QtGui.QApplication.instance().exec_()
