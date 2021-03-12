@@ -15,12 +15,12 @@ from SoundBase import SoundBase
 class SoundOut(SoundBase):
 
     def __init__(self):
+        """
+        音声出力
+        """
         super().__init__()
         self.audio = pyaudio.PyAudio()
-        self.stream = None
         self.sound_source = None
-
-    def set_sound(self, sound_source):
         self.stream = self.audio.open(format=pyaudio.paInt16,
                                       channels=1,
                                       rate=self.RATE,
@@ -28,13 +28,15 @@ class SoundOut(SoundBase):
                                       output=True,
                                       frames_per_buffer=self.CHUNK,
                                       stream_callback=self.callback)
+
+    def set_sound(self, sound_source):
+        """
+        出力する音のオブジェクトを指定する
+        :param sound_source:
+        :return:
+        """
         self.sound_source = sound_source
         self.stream.start_stream()
-
-    def update(self):
-        data = self.sound_source.get_data()
-        print("out1={0}".format(len(data)))
-        self.stream.write(data)
 
     def callback(self, in_data, frame_count, time_info, status):
         self.sound_source.update()

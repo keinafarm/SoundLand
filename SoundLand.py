@@ -8,11 +8,11 @@ import sys
 
 plot_window = SoundGraph()
 sound_out = SoundOut()
-sound_source = SrcMic()
+# sound_source = SrcMic()
 
-#    sound_source = SrcSin()
-#    sound_source.set_frequency(440)
-#    sound_source.set_volume(0.5)
+sound_source = SrcSin()
+sound_source.set_frequency(440)
+sound_source.set_volume(0.5)
 
 plot_window.set_sound(sound_source)
 sound_out.set_sound(sound_source)

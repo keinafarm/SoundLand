@@ -18,21 +18,31 @@ from pyqtgraph.Qt import QtCore, QtGui
 
 class SoundGraph:
     def __init__(self):
+        """
+        波形の表示
+        """
         self.win = pg.GraphicsWindow()
         self.win.setWindowTitle(u"波形のリアルタイムプロット")
         self.win.resize(1100, 800)
         self.plt = self.win.addPlot()  # プロットのビジュアル関係
-        self.y_min = -100
-        self.y_max = 80
         self.plt.setYRange(-1.0, 1.0)  # y軸の上限、下限の設定
         self.curve = self.plt.plot()  # プロットデータを入れる場所
 
         self.sound_source = None
 
     def set_sound(self, source):
+        """
+        波形データの入力元をセットする
+        :param source:波形データの入力元
+        :return:
+        """
         self.sound_source = source
 
     def update(self):
+        """
+        表示を更新する
+        :return:
+        """
         data = self.sound_source.get_data()
         data = np.frombuffer(data, dtype="int16") / 32768
 
