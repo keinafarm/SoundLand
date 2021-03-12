@@ -15,7 +15,7 @@ class SoundOut(SoundBase):
         音データ生成クラスの基底クラス
         """
         super().__init__()
-        self.data = None
+        self.sound_source = None
 
     def set_sound(self, source):
         """
@@ -24,3 +24,7 @@ class SoundOut(SoundBase):
         :return:
         """
         self.sound_source = source
+
+    @abstractmethod
+    def output(self, *args):
+        pass

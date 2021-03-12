@@ -9,6 +9,7 @@
 import pyaudio
 from SoundOut import SoundOut
 
+
 # https://people.csail.mit.edu/hubert/pyaudio/docs/
 
 class OutSpeaker(SoundOut):
@@ -34,10 +35,11 @@ class OutSpeaker(SoundOut):
         :param sound_source:
         :return:
         """
-        self.sound_source = sound_source
+        super().set_sound(sound_source)
         self.stream.start_stream()
 
-    def output(self, in_data, frame_count, time_info, status):
+    def output(self, *args):
+        #    def output(self, in_data, frame_count, time_info, status):
         self.sound_source.update()
         data = self.sound_source.get_data()
         print("out2={0}".format(len(data)))

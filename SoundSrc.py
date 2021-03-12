@@ -20,9 +20,9 @@ class SoundSrc(SoundBase):
     def get_data(self):
         """
         波形データを得る
-        :return:波形データ(np.ndarray:int16)
+        :return:波形データ(numpy.ndarray:int16)
         """
-#        print(len(self.data))
+        #        print(len(self.data))
         return self.data
 
     @abstractmethod
