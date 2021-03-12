@@ -28,7 +28,7 @@ class SrcSin(SoundSrc):
         self.data = np.array(data, dtype="int16")
 
         self.start = self.start+(self.CHUNK*self.angle)
+        print("self.start={0}".format(self.start))
         if self.start > 2*np.pi:
             a = int(self.start / (2 * np.pi))
             self.start =  self.start - (a * 2*np.pi)
-            print("self.start={0}".format(self.start))

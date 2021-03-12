@@ -30,3 +30,4 @@ class SrcMic(SoundSrc):
 
     def update(self):
         self.data = self.stream.read(self.CHUNK)
+        print("mic={0}".format(len(self.data)))

@@ -6,4 +6,5 @@ class SoundSrc(SoundBase):
         super().__init__()
 
     def get_data(self):
+        print(len(self.data))
         return self.data
