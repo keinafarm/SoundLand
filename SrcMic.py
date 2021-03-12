@@ -32,5 +32,6 @@ class SrcMic(SoundSrc):
         self.raw = np.zeros(self.CHUNK)
 
     def update(self):
-        self.data = self.stream.read(self.CHUNK)
+        data = self.stream.read(self.CHUNK)
+        self.data = np.frombuffer(data, dtype="int16")
         print("mic={0}".format(len(self.data)))

@@ -9,15 +9,16 @@ from FltMixer import FltMixer
 
 plot_window = OutGraph()
 sound_out = OutSpeaker()
-# sound_source = SrcMic()
 volume = FltVolume()
 mixer = FltMixer()
 
-sound_source = SrcSin()
-sound_source.set_frequency(440)
-sound_source.set_volume(0.3)
+sound_source = SrcMic()
 mixer.set_sound(sound_source)
-volume.set_volume(0.5)
+
+sound_source1 = SrcSin()
+sound_source1.set_frequency(440)
+sound_source1.set_volume(0.3)
+mixer.set_sound(sound_source1)
 
 sound_source2 = SrcSin()
 sound_source2.set_frequency(660)
@@ -30,10 +31,10 @@ sound_source3.set_volume(0.3)
 mixer.set_sound(sound_source3)
 
 volume.set_sound(mixer)
+volume.set_volume(0.5)
 
 plot_window.set_sound(volume)
 sound_out.set_sound(volume)
-
 
 if (sys.flags.interactive != 1) or not hasattr(QtCore, 'PYQT_VERSION'):
     QtGui.QApplication.instance().exec_()
