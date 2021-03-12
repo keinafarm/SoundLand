@@ -21,6 +21,16 @@ class SrcSin(SoundSrc):
         self.angle = 0.0
         self.start = 0.0
         self.volume = 1.0
+        self.phase = 0.0
+
+    def set_phase(self, angle):
+        """
+        位相をずらす
+        :param angle: ずらす角度（度数法）
+        :return:
+        """
+        self.phase = angle/360 * 2 * np.pi
+        self.start = self.start + self.phase
 
     def set_frequency(self, frequency):
         """

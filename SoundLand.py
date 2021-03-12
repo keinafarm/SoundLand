@@ -13,16 +13,10 @@ sound_out = OutSpeaker()
 mixer = FltMixer()
 octaver = FiltOctaver()
 
-sound_source0 = SrcSin()
-sound_source0.set_frequency(440)
-sound_source0.set_volume(0.8)
+sound_source0 = SrcMic()
+
 octaver.set_sound(sound_source0)
 mixer.set_sound(octaver)
-
-sound_source2 = SrcSin()
-sound_source2.set_frequency(440)
-sound_source2.set_volume(0.2)
-mixer.set_sound(sound_source2)
 
 volume = FltVolume()
 volume.set_sound(mixer)
@@ -30,6 +24,47 @@ volume.set_volume(0.8)
 plot_window.set_sound(volume)
 sound_out.set_sound(volume)
 
+
+
+"""
+sound_source0 = SrcSin()
+sound_source0.set_frequency(440)
+sound_source0.set_volume(0.5)
+mixer.set_sound(sound_source0)
+
+sound_source1 = SrcSin()
+sound_source1.set_frequency(440)
+sound_source1.set_volume(0.5)
+sound_source1.set_phase(10)
+mixer.set_sound(sound_source1)
+
+volume = FltVolume()
+volume.set_sound(mixer)
+volume.set_volume(0.8)
+plot_window.set_sound(volume)
+sound_out.set_sound(volume)
+"""
+"""
+
+
+sound_source0 = SrcSin()
+sound_source0.set_frequency(440)
+sound_source0.set_volume(0.8)
+octaver.set_sound(sound_source0)
+mixer.set_sound(octaver)
+
+sound_source2 = SrcSin()
+sound_source2.set_frequency(880)
+sound_source2.set_volume(0.2)
+sound_source2.set_phase(40)
+mixer.set_sound(sound_source2)
+
+volume = FltVolume()
+volume.set_sound(mixer)
+volume.set_volume(0.8)
+plot_window.set_sound(volume)
+sound_out.set_sound(volume)
+"""
 
 
 """
