@@ -8,11 +8,11 @@
 from SoundFilter import SoundFilter
 import numpy as np
 
+
 class FltVolume(SoundFilter):
     def __init__(self):
         super().__init__()
-        self.value = 1
-
+        self.value = 1.0
 
     def update(self, *args):
         """

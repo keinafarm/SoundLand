@@ -7,7 +7,7 @@
 
 from SoundBase import SoundBase
 from abc import abstractmethod
-
+import numpy as np
 
 class SoundOut(SoundBase):
     def __init__(self):
@@ -16,6 +16,7 @@ class SoundOut(SoundBase):
         """
         super().__init__()
         self.sound_source = None
+        self.data = np.zeros(self.CHUNK, dtype="int16")
 
     def set_sound(self, source):
         """

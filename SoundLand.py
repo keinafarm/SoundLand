@@ -5,18 +5,32 @@ from OutSpeaker import OutSpeaker
 from pyqtgraph.Qt import QtCore, QtGui
 import sys
 from FltVolume import FltVolume
+from FltMixer import FltMixer
 
 plot_window = OutGraph()
 sound_out = OutSpeaker()
 # sound_source = SrcMic()
 volume = FltVolume()
+mixer = FltMixer()
 
 sound_source = SrcSin()
 sound_source.set_frequency(440)
-sound_source.set_volume(1)
+sound_source.set_volume(0.3)
+mixer.set_sound(sound_source)
 volume.set_volume(0.5)
 
-volume.set_sound(sound_source)
+sound_source2 = SrcSin()
+sound_source2.set_frequency(660)
+sound_source2.set_volume(0.3)
+mixer.set_sound(sound_source2)
+
+sound_source3 = SrcSin()
+sound_source3.set_frequency(880)
+sound_source3.set_volume(0.3)
+mixer.set_sound(sound_source3)
+
+volume.set_sound(mixer)
+
 plot_window.set_sound(volume)
 sound_out.set_sound(volume)
 

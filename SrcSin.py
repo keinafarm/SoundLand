@@ -58,3 +58,5 @@ class SrcSin(SoundSrc):
         if self.start > 2 * np.pi:                                          # 2πを超えていたら
             a = int(self.start / (2 * np.pi))                               # 2π以内に収まるように、角度を補正する
             self.start = self.start - (a * 2 * np.pi)
+
+        print("sin.update={0}".format(self.data[0]))
