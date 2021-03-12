@@ -45,7 +45,7 @@ if __name__ == "__main__":
     plotwin = SoundGraph()
     sound_out = SoundOut()
     sound_source = SrcSin()
-    sound_source.set_frequency(16)
+    sound_source.set_frequency(440)
     sound_source.set_volume(0.5)
 
 #    sound_source = SrcMic()
@@ -55,7 +55,7 @@ if __name__ == "__main__":
 
     def update():
         sound_source.update()
-        plotwin.update()
+#        plotwin.update()
         sound_out.update()
 
 

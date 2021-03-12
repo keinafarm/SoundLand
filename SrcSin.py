@@ -29,4 +29,6 @@ class SrcSin(SoundSrc):
 
         self.start = self.start+(self.CHUNK*self.angle)
         if self.start > 2*np.pi:
-            self.start -= 2*np.pi
+            a = int(self.start / (2 * np.pi))
+            self.start =  self.start - (a * 2*np.pi)
+            print("self.start={0}".format(self.start))
