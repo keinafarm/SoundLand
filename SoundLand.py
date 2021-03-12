@@ -11,12 +11,22 @@ from FltOctaver import FiltOctaver
 plot_window = OutGraph()
 sound_out = OutSpeaker()
 mixer = FltMixer()
-octaver = FiltOctaver()
 
 sound_source0 = SrcMic()
+octaver0 = FiltOctaver()
+octaver0.set_sound(sound_source0)
+octaver2 = FiltOctaver()
+octaver2.set_sound(octaver0)
+mixer.set_sound(octaver2)
 
-octaver.set_sound(sound_source0)
-mixer.set_sound(octaver)
+sound_source1 = SrcSin()
+sound_source1.set_frequency(440)
+sound_source1.set_volume(0.5)
+octaver1 = FiltOctaver()
+octaver1.set_sound(sound_source1)
+#mixer.set_sound(octaver1)
+
+
 
 volume = FltVolume()
 volume.set_sound(mixer)
