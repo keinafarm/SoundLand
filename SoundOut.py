@@ -13,14 +13,11 @@ class SoundOut(SoundBase):
                                       rate=self.RATE,
                                       input=False,
                                       output=True,
-                                      frames_per_buffer=self.CHUNK,
-                                      stream_callback=self.update)
+                                      frames_per_buffer=self.CHUNK)
 
     def set_sound(self, sound_source):
         self.sound_source = sound_source
-        self.stream.start_stream()
 
-    def update(self, in_data, frame_count, time_info, status):
-        self.sound_source.update()
+    def update(self):
         data = self.sound_source.get_data()
-        return (data, pyaudio.paContinue)
+        self.stream.write(data)
