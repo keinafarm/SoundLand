@@ -49,6 +49,5 @@ class OutGraph(SoundOut):
         :return:
         """
         data = self.sound_source.get_data()
-        data = np.frombuffer(data, dtype="int16") / 32768
 
         self.curve.setData(data)

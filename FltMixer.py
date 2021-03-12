@@ -43,4 +43,4 @@ class FltMixer(SoundFilter):
 
         print("mixer.update")
         print("data_sum[0]={0}".format(data_sum[0]))
-        self.data = np.array(data_sum, dtype="int16")
+        self.data = data_sum

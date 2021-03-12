@@ -50,8 +50,8 @@ class SrcSin(SoundSrc):
         :return:
         """
         angle = [self.start + (i * self.angle) for i in range(self.CHUNK)]  # sin関数に入力する、角度値の配列
-        data = np.sin(angle) * 32767.0 * self.volume                        # -32767～32767までの数値に変換
-        self.data = np.array(data, dtype="int16")                           # 型をint16に変換(Mic入力フォーマットに合わせる）
+        data = np.sin(angle) * self.volume                                  # -32767～32767までの数値に変換
+        self.data = np.array(data, dtype="float64")                         # 型をint16に変換(Mic入力フォーマットに合わせる）
 
         self.start = self.start + (self.CHUNK * self.angle)                 # 次の角度を演算
         print("self.start={0}".format(self.start))

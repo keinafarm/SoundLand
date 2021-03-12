@@ -34,4 +34,5 @@ class SrcMic(SoundSrc):
     def update(self):
         data = self.stream.read(self.CHUNK)
         self.data = np.frombuffer(data, dtype="int16")
+        self.data = self.data / 32767.0
         print("mic={0}".format(len(self.data)))

@@ -20,8 +20,7 @@ class FltVolume(SoundFilter):
         :return:
         """
         self.sound_source.update()
-        data = self.sound_source.get_data() * self.value
-        self.data = np.array(data, dtype="int16")
+        self.data = self.sound_source.get_data() * self.value
 
     def set_volume(self, value):
         self.value = value

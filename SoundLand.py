@@ -31,7 +31,7 @@ sound_source3.set_volume(0.3)
 mixer.set_sound(sound_source3)
 
 volume.set_sound(mixer)
-volume.set_volume(0.5)
+volume.set_volume(0.8)
 
 plot_window.set_sound(volume)
 sound_out.set_sound(volume)

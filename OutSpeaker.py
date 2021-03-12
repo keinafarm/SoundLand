@@ -8,7 +8,7 @@
 # https://www.wizard-notes.com/entry/python/pyaudio-recplay
 import pyaudio
 from SoundOut import SoundOut
-
+import numpy as np
 
 # https://people.csail.mit.edu/hubert/pyaudio/docs/
 
@@ -41,6 +41,7 @@ class OutSpeaker(SoundOut):
     def output(self, *args):
         #    def output(self, in_data, frame_count, time_info, status):
         self.sound_source.update()
-        data = self.sound_source.get_data()
+        data = self.sound_source.get_data() * 32767.0
+        data = np.array(data, dtype="int16")
         print("out2={0}".format(len(data)))
         return data, pyaudio.paContinue
