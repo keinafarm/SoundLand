@@ -1,13 +1,13 @@
-from SoundGraph import SoundGraph
+from OutGraph import OutGraph
 from SrcSin import SrcSin
 from SrcMic import SrcMic
-from SoundOut import SoundOut
+from OutSpeaker import OutSpeaker
 import pyqtgraph as pg
 from pyqtgraph.Qt import QtCore, QtGui
 import sys
 
-plot_window = SoundGraph()
-sound_out = SoundOut()
+plot_window = OutGraph()
+sound_out = OutSpeaker()
 # sound_source = SrcMic()
 
 sound_source = SrcSin()
@@ -20,7 +20,7 @@ sound_out.set_sound(sound_source)
 
 def update():
     #        sound_source.update()
-    plot_window.update()
+    plot_window.callback()
 
 
 #       sound_out.update()

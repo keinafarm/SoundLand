@@ -1,45 +1,26 @@
 ############################################################
 #
-#   音を出力する
+#   出力先の抽象クラス
 #
 ############################################################
 #
 
-# https://www.wizard-notes.com/entry/python/pyaudio-recplay
-import pyaudio
 from SoundBase import SoundBase
+from abc import abstractmethod
 
-
-# https://people.csail.mit.edu/hubert/pyaudio/docs/
 
 class SoundOut(SoundBase):
-
     def __init__(self):
         """
-        音声出力
+        音データ生成クラスの基底クラス
         """
         super().__init__()
-        self.audio = pyaudio.PyAudio()
-        self.sound_source = None
-        self.stream = self.audio.open(format=pyaudio.paInt16,
-                                      channels=1,
-                                      rate=self.RATE,
-                                      input=False,
-                                      output=True,
-                                      frames_per_buffer=self.CHUNK,
-                                      stream_callback=self.callback)
+        self.data = None
 
-    def set_sound(self, sound_source):
+    def set_sound(self, source):
         """
-        出力する音のオブジェクトを指定する
-        :param sound_source:
+        波形データの入力元をセットする
+        :param source:波形データの入力元
         :return:
         """
-        self.sound_source = sound_source
-        self.stream.start_stream()
-
-    def callback(self, in_data, frame_count, time_info, status):
-        self.sound_source.update()
-        data = self.sound_source.get_data()
-        print("out2={0}".format(len(data)))
-        return data, pyaudio.paContinue
+        self.sound_source = source

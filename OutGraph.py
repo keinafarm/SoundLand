@@ -14,9 +14,9 @@ import numpy as np
 
 import pyqtgraph as pg
 from pyqtgraph.Qt import QtCore, QtGui
+from SoundOut import SoundOut
 
-
-class SoundGraph:
+class OutGraph(SoundOut):
     def __init__(self):
         """
         波形の表示
@@ -30,15 +30,8 @@ class SoundGraph:
 
         self.sound_source = None
 
-    def set_sound(self, source):
-        """
-        波形データの入力元をセットする
-        :param source:波形データの入力元
-        :return:
-        """
-        self.sound_source = source
 
-    def update(self):
+    def callback(self):
         """
         表示を更新する
         :return:
@@ -52,10 +45,10 @@ class SoundGraph:
 if __name__ == "__main__":
     from SrcSin import SrcSin
     from SrcMic import SrcMic
-    from SoundOut import SoundOut
+    from OutSpeaker import OutSpeaker
 
-    plot_window = SoundGraph()
-    sound_out = SoundOut()
+    plot_window = OutGraph()
+    sound_out = OutSpeaker()
     sound_source = SrcMic()
 
     #    sound_source = SrcSin()
@@ -68,7 +61,7 @@ if __name__ == "__main__":
 
     def update():
         #        sound_source.update()
-        plot_window.update()
+        plot_window.callback()
 
 
     #       sound_out.update()
